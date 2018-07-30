@@ -14,7 +14,7 @@ class TweetFactory:
     def compose_tweet(mubi_json, omdb_json):
         """Composes the tweet"""
         msgs = []
-        msgs.append("The film leaving Mubi tonight is {}".format(
+        msgs.append("The film leaving #Mubi tonight is {}".format(
             mubi_json['title']))
         ratings = TweetFactory._get_ratings_str(mubi_json, omdb_json)
         if ratings:
