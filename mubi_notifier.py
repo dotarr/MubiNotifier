@@ -45,9 +45,9 @@ def send_notification(event, context):
     logger.info('film leaving is %s', leaving['title'])
 
     logger.info('getting omdb data')
-    omdb_json = omdb.get_omdb_data(leaving['title'])
+    omdb_json = omdb.get_omdb_data(leaving['title'], leaving['year'])
     logger.info('fetched omdb data %s', omdb_json)
 
     msg = TweetFactory.compose_tweet(leaving, omdb_json)
     logger.info('sending tweet - %s', msg)
-    twitter.send_tweet(msg, leaving['stills']['medium'])
+    #twitter.send_tweet(msg, leaving['stills']['medium'])

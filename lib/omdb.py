@@ -10,15 +10,17 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 BASE_URL = 'http://www.omdbapi.com/?apikey={}'
-TITLE_QUERY = '&t={}'
+QUERY_PARAMS = '&t={}&y={}'
 
 class OmdbUtil:
     """ A class that handles calls to the OMDB api """
     def __init__(self, config):
         self._api_url = BASE_URL.format(config['omdb_api_key'])
 
-    def _fetch_raw_film_data(self, title):
-        request = '{}{}'.format(self._api_url, TITLE_QUERY.format(quote(title)))
+    def _fetch_raw_film_data(self, title, year):
+        request = '{}{}'.format(self._api_url,
+                                QUERY_PARAMS.format(quote(title),
+                                                    quote('{}'.format(year))))
         try:
             response = requests.get(request)
         except requests.exceptions.RequestException as exception:
@@ -34,10 +36,10 @@ class OmdbUtil:
 
         return response
 
-    def get_omdb_data(self, title):
+    def get_omdb_data(self, title, year):
         """ Fetches data from omdb based on title """
         try:
-            response = self._fetch_raw_film_data(title)
+            response = self._fetch_raw_film_data(title, year)
         except RuntimeError as exception:
             logger.error('Exception thrown when trying to get omdb data %s',
                          exception)
