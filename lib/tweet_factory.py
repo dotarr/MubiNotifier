@@ -39,4 +39,4 @@ class TweetFactory:
         else:
             ratings.append('Average Rating: {}'
                            .format(mubi_json['average_rating']))
-        return '[{}]'.format('|'.join(ratings)) if ratings else None
+        return '[{}]'.format(' | '.join(ratings)) if ratings else None
