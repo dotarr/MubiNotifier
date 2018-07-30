@@ -50,4 +50,4 @@ def send_notification(event, context):
 
     msg = TweetFactory.compose_tweet(leaving, omdb_json)
     logger.info('sending tweet - %s', msg)
-    #twitter.send_tweet(msg, leaving['stills']['medium'])
+    twitter.send_tweet(msg, leaving['stills']['medium'])
