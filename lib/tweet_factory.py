@@ -15,7 +15,7 @@ class TweetFactory:
         """Composes the tweet"""
         msgs = []
         msgs.append("The film leaving #Mubi tonight is {}".format(
-            mubi_json['title']))
+            mubi_json['film']['title']))
         ratings = TweetFactory._get_ratings_str(mubi_json, omdb_json)
         if ratings:
             msgs.append(ratings)
@@ -23,7 +23,7 @@ class TweetFactory:
         if omdb_json:
             msgs.append(omdb_json['Plot'])
         else:
-            msgs.append(mubi_json['excerpt'])
+            msgs.append(mubi_json['film']['short_synopsis'])
 
         msg = '\n'.join(msgs)
         return msg[:TWITTER_CHAR_LIMIT - 3] +\
@@ -38,5 +38,5 @@ class TweetFactory:
                                                rating['Value']))
         else:
             ratings.append('Average Rating: {}'
-                           .format(mubi_json['average_rating']))
+                           .format(mubi_json['film']['average_rating']))
         return '[{}]'.format(' | '.join(ratings)) if ratings else None
