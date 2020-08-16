@@ -3,7 +3,6 @@ A module to handle requests to the OMDB API
 """
 import logging
 from urllib.parse import quote
-#pip
 import requests
 
 logger = logging.getLogger()
