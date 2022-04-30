@@ -1,0 +1,9 @@
+{
+    "Parameters": {
+        "omdb_api_key": "updateme",
+        "twitter_access_token_key": "updateme",
+        "twitter_access_token_secret": "updateme",
+        "twitter_consumer_key": "updateme",
+        "twitter_consumer_secret": "updateme"
+    }
+}
