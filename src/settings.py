@@ -10,3 +10,5 @@ TWITTER_CONFIG = {
 }
 
 OMDB_API_KEY = os.environ['omdb_api_key']
+
+TIMEZONE = os.getenv('local_timezone', 'Europe/London')

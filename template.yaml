@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  MubiNotifier
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  LeavingMubiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: mubi_notifier.send_notification
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Events:
+        ScheduledEvent:
+            Type: Schedule
+            Properties:
+              Schedule: cron(0 16 * * ? *)
+              Enabled: True
+      Environment:
+        Variables:
+          omdb_api_key: update_me
+          twitter_access_token_key: update_me
+          twitter_access_token_secret: update_me
+          twitter_consumer_key: update_me
+          twitter_consumer_secret: update_me
+
+Outputs:
+  MubiNotifierFunction:
+    Description: "MubiNotifier Function ARN"
+    Value: !GetAtt LeavingMubiFunction.Arn
+  MubiNotifierFunctionIamRole:
+    Description: "Implicit IAM Role created for MubiNotifier function"
+    Value: !GetAtt LeavingMubiFunction.Arn
