@@ -1,3 +1,8 @@
+## This repository is now archived
+Around the same time, two things happened that made this project not worth maintaining:
+* Twitter/X significantly restricted API access breaking the library this project used to interact with it.
+* Mubi dropped the notion of expiring/daily featured films making the purpose of this bot irrelevant.
+
 # MubiNotifier
 A lambda to tweet out what is leaving or featured on Mubi.
 
